@@ -49,11 +49,12 @@ def mirror_around_15_16(df_16_30):
         source_slot = 31 - s   # 1<-30, 2<-29, ..., 15<-16
         source_row = df_16_30[df_16_30["Slot"] == source_slot].iloc[0]
 
+        # add data, round to 1 decimal place
         rows.append({
             "Slot": s,
             "MirrorFrom": source_slot,
-            "Feet_Final": source_row["Feet_Final"],
-            "Tank_Final": source_row["Tank_Final"]
+            "Feet_Final": round(source_row["Feet_Final"], 1),
+            "Tank_Final": round(source_row["Tank_Final"], 1)
         })
 
     # 再加入 16~30 原本區段
@@ -61,11 +62,12 @@ def mirror_around_15_16(df_16_30):
         rows.append({
             "Slot": int(row["Slot"]),
             "MirrorFrom": int(row["Slot"]),
-            "Feet_Final": row["Feet_Final"],
-            "Tank_Final": row["Tank_Final"]
+            "Feet_Final": round(row["Feet_Final"], 1),
+            "Tank_Final": round(row["Tank_Final"], 1)
         })
 
     result = pd.DataFrame(rows).sort_values("Slot").reset_index(drop=True)
+    
     return result
 
 def plot_result(df_1_30, raw_df=None):
