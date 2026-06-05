@@ -32,7 +32,8 @@ left_tank = tank_f[::-1]
 full_slots = np.arange(1, 31)
 full_feet = np.concatenate([left_feet, feet_f])
 full_tank = np.concatenate([left_tank, tank_f])
-full = pd.DataFrame({'Slot': full_slots, 'Feet': full_feet, 'Tank': full_tank})
+diff = full_feet - full_tank
+full = pd.DataFrame({'Slot': full_slots, 'Feet': full_feet, 'Tank': full_tank, 'Diff': diff})
 
 output_dir = Path('output')
 output_dir.mkdir(exist_ok=True)
