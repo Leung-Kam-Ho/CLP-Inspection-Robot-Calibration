@@ -2,7 +2,7 @@ import numpy as np, pandas as pd
 from scipy.interpolate import interp1d
 from pathlib import Path
 
-for file in ['RobotBafflePressureCalibration.csv']:
+for file in ['RobotBafflePressureCalibration.csv',"RobotEnterPressureCalibration.csv"]:
     # Reload original input
     orig = pd.read_csv(file)
     orig['Feet'] = pd.to_numeric(orig['Feet'], errors='coerce')
